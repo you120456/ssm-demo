@@ -7,7 +7,28 @@
     <result column="password" property="password" jdbcType="VARCHAR" />
   </resultMap>
 
+    <!--查询所有用户-->
   <select id="getAllUser" resultType="User">
     SELECT * FROM USER
   </select>
+
+  <!--根据用户名查询，校验用户名-->
+  <select id="checkUserName" resultType="User" parameterType="String">
+    SELECT * FROM USER WHERE username=#{username}
+  </select>
+
+  <!--保存用户-->
+  <insert id="saveUser" parameterType="User">
+      INSERT INTO USER(username,sex,city,age) VALUES(username=#{username},sex=#{sex},city=#{city},age=#{age})
+  </insert>
+
+  <!--修改用户-->
+  <update id="updateUser" parameterType="User">
+    UPDATE USER SET username=#{username},sex=#{sex},city=#{city},age=#{age} WHERE id=#{id}
+  </update>
+
+  <!--根据id删除用户-->
+  <delete id="deleteUser" parameterType="Integer">
+      DELETE FROM USER WHERE id=#{id}
+  </delete>
 </mapper>

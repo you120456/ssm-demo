@@ -16,4 +16,31 @@ public interface UserMapper {
      * @return
      */
     List<User> getAllUser();
+
+    /**
+     *
+     * @param username
+     * @return
+     */
+    User checkUserName(String username);
+
+    /**
+     * 保存用户
+     * @param user
+     * @return
+     */
+    int saveUser(User user);
+
+    /**
+     * 根据id删除用户
+     * @param id
+     * @return
+     */
+    int deleteUser(Integer id);
+
+    /**
+     * 修改用户
+     * @param user
+     */
+    void updateUser(User user);
 }

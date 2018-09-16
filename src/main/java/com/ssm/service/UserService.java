@@ -14,4 +14,31 @@ public interface UserService {
      * @return
      */
     List<User> getAllUser();
+
+    /**
+     * 校验用户名
+     * @param username
+     * @return
+     */
+    User checkUserName(String username);
+
+    /**
+     * 保存用户
+     * @param user
+     * @return
+     */
+    int saveUser(User user);
+
+    /**
+     * 删除用户根据id
+     * @param id
+     * @return
+     */
+    int deleteUser(Integer id);
+
+    /**
+     * 修改用户
+     * @param user
+     */
+    void updateUser(User user);
 }

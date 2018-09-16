@@ -191,12 +191,24 @@
       <artifactId>jstl</artifactId>
       <version>1.2</version>
     </dependency>
-      <dependency>
-          <groupId>com.alibaba</groupId>
-          <artifactId>fastjson</artifactId>
-          <version>1.2.45</version>
-      </dependency>
       <!-- End: Servlet相关依赖包 -->
+
+      <!--json数据格式-->
+      <dependency>
+          <groupId>com.fasterxml.jackson.core</groupId>
+          <artifactId>jackson-core</artifactId>
+          <version>2.8.5</version>
+      </dependency>
+      <dependency>
+          <groupId>com.fasterxml.jackson.core</groupId>
+          <artifactId>jackson-annotations</artifactId>
+          <version>2.8.5</version>
+      </dependency>
+      <dependency>
+          <groupId>com.fasterxml.jackson.core</groupId>
+          <artifactId>jackson-databind</artifactId>
+          <version>2.8.5</version>
+      </dependency>
   </dependencies>
 
   <build>
