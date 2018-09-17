@@ -163,7 +163,7 @@ $(function () {
                     if (data.code == 200 && data.pageInfo != null) {
                         alert("用户名**"+ data.pageInfo.username +"**已经存在");
                         $("#user_save_btn").attr("ajax-va", "error");
-                    }  else if (result.code == 200 && data.pageInfo == null) {
+                    }  else if (data.code == 200 && data.pageInfo == null) {
                         //为保存按钮添加属性
                         $("#user_save_btn").attr("ajax-va", "success");
                     }
@@ -187,13 +187,12 @@ $(function () {
                 dataType:"json",
                 contentType:"application/json;charset=UTF-8",
                 success: function (data) {
-                    //员工保存成功(后端校验)
-                    if (data.code == 200) {
-                        //1.关闭modal框
-                        $("#userAddModal").modal('hide');
-                        //2.来到最后一页，显示刚才保存的数据
-                        to_page(totalRecord);
-                    }
+                   if (data.code == 200){
+                       //1.关闭modal框
+                       $("#userAddModal").modal('hide');
+                       //2.来到最后一页，显示刚才保存的数据
+                       to_page(totalRecord);
+                   }
                 }
             });
         });

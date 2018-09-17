@@ -19,7 +19,7 @@
 
   <!--保存用户-->
   <insert id="saveUser" parameterType="User">
-      INSERT INTO USER(username,sex,city,age) VALUES(username=#{username},sex=#{sex},city=#{city},age=#{age})
+      INSERT INTO USER(username,sex,city,age) VALUES(#{username},#{sex},#{city},#{age})
   </insert>
 
   <!--修改用户-->

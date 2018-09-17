@@ -81,10 +81,7 @@ public class UserController {
     @RequestMapping(value = "/saveUser",method = RequestMethod.POST)
     @ResponseBody
     public ResultData saveUser(@RequestBody User user){
-        System.out.println(user);
-        //保存用户
-        int i = userService.saveUser(user);
-        System.out.println(i);
+       int i = userService.saveUser(user);
         return ResultData.success();
     }
 
