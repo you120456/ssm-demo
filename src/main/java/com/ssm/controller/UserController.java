@@ -64,9 +64,9 @@ public class UserController {
      * @param username
      * @return
      */
-    @RequestMapping(value = "/checkUser",method = RequestMethod.GET)
+    @RequestMapping(value = "/checkUser/{username}",method = RequestMethod.POST)
     @ResponseBody
-    public ResultData checkUserName(String username){
+    public ResultData checkUserName(@PathVariable("username") String username){
         //校验用户名
         User user = userService.checkUserName(username);
         System.out.println(user);
@@ -89,9 +89,9 @@ public class UserController {
      * 修改员工信息（更新）
      */
 
-    @RequestMapping(value = "/updateUser/{id}",method = RequestMethod.POST)
+    @RequestMapping(value = "/updateUser",method = RequestMethod.POST)
     @ResponseBody
-    public ResultData updateUser(User user){
+    public ResultData updateUser(@RequestBody User user){
         System.out.print(user);
         userService.updateUser(user);
         return ResultData.success();

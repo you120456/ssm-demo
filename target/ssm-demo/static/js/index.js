@@ -154,9 +154,9 @@ $(function () {
             var username = $("#username_add_input").val();
             //发送Ajax请求校验姓名是否可用
             $.ajax({
-                url: "/user/checkUser",
-                data: "username=" + username,
-                type: "GET",
+                url: "/user/checkUser/"+username,
+                //data: "username=" + username,
+                type: "POST",
                 success: function (data) {
                     //alert(data.pageInfo.username);
                     //表示成功，用户名可用
@@ -176,7 +176,7 @@ $(function () {
          */
         $("#user_save_btn").click(function () {
             var username = $("#username_add_input").val();
-            var sex =$("input[name='sex']:checked").val();
+            var sex =$("input[name=sex]:checked").val();
             var city =$("#city_add_input").val();
             var age =$("#age_add_input").val();
             //2.发送ajax请求保存员工
@@ -234,11 +234,18 @@ $(function () {
             //如果要直接发送PUT之类的请求
             //在WEB.xml配置HttpPutFormContentFilter过滤器即可
             //这里未使用如上所述方法
+            var id = $(this).attr("edit-id");
+            var username = $("#username_revise_input").val();
+            var sex = $("#userReviseModal input[name=sex]").val();
+            var city =$("#city_revise_input").val();
+            var age =$("#age_revise_input").val();
             $.ajax({
-                url:"/user/updateUser/"+$(this).attr("edit-id"),
+                url:"/user/updateUser",
                 type:"POST",
-                data:$("#userReviseModal form").serialize()+"&_method=PUT",
-                success:function (data) {
+                data:JSON.stringify({id:id,username:username,sex:sex,city:city,age:age}),
+                dataType:"json",
+                contentType:"application/json;charset=UTF-8",
+                success:function () {
                     //1.关闭modal框
                     $("#userReviseModal").modal('hide');
                     //2.来到当前页，显示刚才保存的数据
@@ -275,4 +282,18 @@ $(function () {
         })
     }
 
+    /**
+     * 导出用户信息
+     */
+    $("#excl_poi_btn").click(function () {
+
+        //2.发送ajax请求保存员工
+        $.ajax({
+            url: "/export",
+            type: "GET",
+            success: function (data) {
+               alert("成功");
+            }
+        });
+    });
 });

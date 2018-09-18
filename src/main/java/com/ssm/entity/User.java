@@ -1,5 +1,7 @@
 package com.ssm.entity;
 
+import cn.afterturn.easypoi.excel.annotation.Excel;
+
 import java.io.Serializable;
 
 /**
@@ -7,11 +9,27 @@ import java.io.Serializable;
  *
  */
 public class User implements Serializable {
+    @Excel(name = "id", orderNum = "0")
     private Integer id;
+    @Excel(name = "姓名", orderNum = "1")
     private String username;
+    @Excel(name = "性别", orderNum = "2")
     private String sex;
+    @Excel(name = "城市", orderNum = "3")
     private String city;
+    @Excel(name = "年龄", orderNum = "4")
     private Integer age;
+
+    public User() {
+    }
+
+    public User(Integer id, String username, String sex, String city, Integer age) {
+        this.id = id;
+        this.username = username;
+        this.sex = sex;
+        this.city = city;
+        this.age = age;
+    }
 
     public Integer getId() {
         return id;
