@@ -1,8 +1,10 @@
 # ssm-demo
 
 #### 项目介绍
-> 前后端分离，前端利用ajax调用后端API接收json数据,进行表单的增删改查,
+> 前后端分离，前端利用ajax调用后端API接收json数据,进行表单的增删改查
+
 #####效果图：
+
 ![增删改查效果图](https://upload-images.jianshu.io/upload_images/8504906-112be673ef98f52e.png?imageMogr2/auto-orient/strip%7CimageView2/2/w/1240)
 #### 软件架构
 + IDE：IDEA
