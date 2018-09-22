@@ -4,19 +4,19 @@
 前后端分离，前端利用ajax调用后端API接收json数据,进行表单的增删改查
 
 #### 软件架构
-IDE：IDEA
-数据库：mysql
-jdk:1.8
-tomcat:9
-后端：springmvc，mybatis
-前端：bootstrap
++ IDE：IDEA
++ 数据库：mysql
++ jdk:1.8
++ tomcat:9
++ 后端：springmvc，mybatis
++ 前端：bootstrap
 
 
 #### 安装教程
 
-1.导入ssm-demo.sql
-2.git clone git@gitee.com:smfx1314/ssm-demo.git
-3.运行就可以看到效果
+1. 导入ssm-demo.sql
+2. git clone git@gitee.com:smfx1314/ssm-demo.git
+3. 运行就可以看到效果
 
 #### 使用说明
 
