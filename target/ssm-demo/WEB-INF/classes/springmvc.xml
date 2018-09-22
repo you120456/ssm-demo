@@ -14,10 +14,10 @@
     <mvc:annotation-driven/>
     <!-- 处理静态资源 -->
     <mvc:default-servlet-handler/>
-    <!-- 视图解析器 -->
+    <!-- 视图解析器 这里可以不用配置，因为是通过ajax异步调用，本人习惯配置上，根据需要更改-->
     <bean id="viewResolver"
           class="org.springframework.web.servlet.view.InternalResourceViewResolver">
         <property name="prefix" value="/WEB-INF/jsp/"/>
-        <property name="suffix" value=".*"></property>
+        <property name="suffix" value=".jsp"></property>
     </bean>
 </beans>

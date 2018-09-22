@@ -281,33 +281,4 @@ $(function () {
             }
         })
     }
-
-    /**
-     * 导出用户信息
-     */
-    $("#excl_poi_btn").click(function () {
-
-        //2.发送ajax请求保存员工
-        $.ajax({
-            url: "/writeExcel",
-            type: "GET",
-            success: function () {
-               alert("成功");
-            }
-        });
-    });
-
-    /**
-     * 跳转到管理员登录页面
-     */
-    $("#admin_btn").click(function () {
-        $.ajax({
-            url: "/login",
-            type: "GET",
-            success: function () {
-
-                alert("cheng")
-            }
-        });
-    });
 });
