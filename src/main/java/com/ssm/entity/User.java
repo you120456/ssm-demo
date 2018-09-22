@@ -1,35 +1,30 @@
 package com.ssm.entity;
 
-import cn.afterturn.easypoi.excel.annotation.Excel;
+import com.alibaba.excel.annotation.ExcelProperty;
+import com.alibaba.excel.metadata.BaseRowModel;
 
 import java.io.Serializable;
 
 /**
  * Created by jiangfeixiang on 2018/9/4
+ * @author smfx1314
  *
  */
-public class User implements Serializable {
-    @Excel(name = "id", orderNum = "0")
+public class User extends BaseRowModel implements Serializable {
+    @ExcelProperty(index = 0)
     private Integer id;
-    @Excel(name = "姓名", orderNum = "1")
+
+    @ExcelProperty(index = 1)
     private String username;
-    @Excel(name = "性别", orderNum = "2")
+
+    @ExcelProperty(index = 2)
     private String sex;
-    @Excel(name = "城市", orderNum = "3")
+
+    @ExcelProperty(index = 3)
     private String city;
-    @Excel(name = "年龄", orderNum = "4")
+
+    @ExcelProperty(index = 4)
     private Integer age;
-
-    public User() {
-    }
-
-    public User(Integer id, String username, String sex, String city, Integer age) {
-        this.id = id;
-        this.username = username;
-        this.sex = sex;
-        this.city = city;
-        this.age = age;
-    }
 
     public Integer getId() {
         return id;

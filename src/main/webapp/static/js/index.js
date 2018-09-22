@@ -281,19 +281,4 @@ $(function () {
             }
         })
     }
-
-    /**
-     * 导出用户信息
-     */
-    $("#excl_poi_btn").click(function () {
-
-        //2.发送ajax请求保存员工
-        $.ajax({
-            url: "/export",
-            type: "GET",
-            success: function (data) {
-               alert("成功");
-            }
-        });
-    });
 });

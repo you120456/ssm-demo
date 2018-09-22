@@ -289,10 +289,24 @@ $(function () {
 
         //2.发送ajax请求保存员工
         $.ajax({
-            url: "/export",
+            url: "/writeExcel",
             type: "GET",
-            success: function (data) {
+            success: function () {
                alert("成功");
+            }
+        });
+    });
+
+    /**
+     * 跳转到管理员登录页面
+     */
+    $("#admin_btn").click(function () {
+        $.ajax({
+            url: "/login",
+            type: "GET",
+            success: function () {
+
+                alert("cheng")
             }
         });
     });
