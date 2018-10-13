@@ -7,6 +7,7 @@ import java.util.List;
 
 /**
  * Created by jiangfeixiang on 2018/9/4
+ * @author smfx1314
  */
 @Repository
 public interface UserMapper {

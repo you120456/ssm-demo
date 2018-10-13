@@ -21,16 +21,16 @@ $(function () {
             type: "GET",
             dataType: "json",
             contentType:"application/json;charset=UTF-8",
-            success: function (data) {
-                //alert(data.msg);
+            success: function (result) {
+                //alert(result.msg);
                 //解析并显示员工数据表
-                build_users_table(data)
+                build_users_table(result)
 
                 //2.解析并显示分页信息
-                build_page_info(data);
+                build_page_info(result);
 
                 //3.解析并显示分页条数据
-                build_page_nav(data);
+                build_page_nav(result);
             }
         })
     }
@@ -39,10 +39,10 @@ $(function () {
      * 解析并显示员工数据表
      * @param data
      */
-    function build_users_table(data) {
+    function build_users_table(result) {
         //清空table表格
         $("#users_table tbody").empty();
-        var users = data.pageInfo.list;
+        var users = result.data.list;
 
         //遍历元素
         $.each(users, function (index, item) {
@@ -66,19 +66,19 @@ $(function () {
      * 解析显示分页信息
      * @param data
      */
-    function build_page_info(data) {
+    function build_page_info(result) {
         $("#page_info_area").empty();
-        $("#page_info_area").append("当前" + data.pageInfo.pageNum + "页,总共" + data.pageInfo.pages +
-            "页，总共" + data.pageInfo.total + "条记录");
-        totalRecord = data.pageInfo.total;
-        currentPage=data.pageInfo.pageNum;
+        $("#page_info_area").append("当前" + result.data.pageNum + "页,总共" + result.data.pages +
+            "页，总共" + result.data.total + "条记录");
+        totalRecord = result.data.total;
+        currentPage=result.data.pageNum;
     }
 
     /**
      * 解析显示分页导航条
      * @param data
      */
-    function build_page_nav(data) {
+    function build_page_nav(result) {
         $("#page_nav_area").empty();
         var ul = $("<ul></ul>>").addClass("pagination");
         var firstPageLi = $("<li></li>").append($("<a></a>").append("首页").attr("href", "#"));
@@ -86,7 +86,7 @@ $(function () {
         var nextPageLi = $("<li></li>").append($("<a></a>").append("&raquo;").attr("href", "#"));
         var lastPageLi = $("<li></li>").append($("<a></a>").append("末页").attr("href", "#"));
         //如果没有前一页，前一页和首页就不能点
-        if (data.pageInfo.hasPreviousPage == false) {
+        if (result.data.hasPreviousPage == false) {
             firstPageLi.addClass("disabled");
             prePageLi.addClass("disabled");
         } else {
@@ -95,28 +95,28 @@ $(function () {
                 to_page(1);
             });
             prePageLi.click(function () {
-                to_page(data.pageInfo.pageNum - 1);
+                to_page(result.data.pageNum - 1);
             });
         }
-        if (data.pageInfo.hasNextPage == false) {
+        if (result.data.hasNextPage == false) {
             nextPageLi.addClass("disabled");
             lastPageLi.addClass("disabled");
         } else {
             //构建点击事件
             nextPageLi.click(function () {
-                to_page(data.pageInfo.pageNum + 1);
+                to_page(result.data.pageNum + 1);
             });
             lastPageLi.click(function () {
-                to_page(data.pageInfo.lastPage);
+                to_page(result.data.lastPage);
             })
         }
         //添加首页和前一页
         ul.append(firstPageLi).append(prePageLi);
         //遍历添加页码
-        $.each(data.pageInfo.navigatepageNums, function (index, item) {
+        $.each(result.data.navigatepageNums, function (index, item) {
             var numLi = $("<li></li>").append($("<a></a>").append(item).attr("href", "#"));
             //如果是当前选中页面，添加active标识
-            if (data.pageInfo.pageNum == item) {
+            if (result.data.pageNum == item) {
                 numLi.addClass("active");
             }
             //给每个页码添加点击就跳转
@@ -154,16 +154,16 @@ $(function () {
             var username = $("#username_add_input").val();
             //发送Ajax请求校验姓名是否可用
             $.ajax({
-                url: "/user/checkUser/"+username,
-                //data: "username=" + username,
+                url: "/user/checkUser/"+username, ////这种方式是在URL后传参：xxx/xxx
+                //data: "username=" + username, //这种方式是在URL后传参：xxx?username="xxx"
                 type: "POST",
-                success: function (data) {
-                    //alert(data.pageInfo.username);
+                success: function (result) {
+
                     //表示成功，用户名可用
-                    if (data.code == 200 && data.pageInfo != null) {
-                        alert("用户名**"+ data.pageInfo.username +"**已经存在");
+                    if (result.status == 0 && result.data != null) {
+                        alert("用户名**"+ result.data.username +"**已经存在");
                         $("#user_save_btn").attr("ajax-va", "error");
-                    }  else if (data.code == 200 && data.pageInfo == null) {
+                    }  else if (result.status == 0 && result.data == null) {
                         //为保存按钮添加属性
                         $("#user_save_btn").attr("ajax-va", "success");
                     }
@@ -186,8 +186,8 @@ $(function () {
                 data: JSON.stringify({username:username,sex:sex,city:city,age:age}),
                 dataType:"json",
                 contentType:"application/json;charset=UTF-8",
-                success: function (data) {
-                   if (data.code == 200){
+                success: function (result) {
+                   if (result.status == 0){
                        //1.关闭modal框
                        $("#userAddModal").modal('hide');
                        //2.来到最后一页，显示刚才保存的数据
@@ -271,13 +271,13 @@ $(function () {
                 $.ajax({
                     url:"/user/deleteUser/"+id,
                     type:"DELETE",
-                    success:function (data) {
-                        alert(data.msg);
+                    success:function (result) {
+                        if (result.status == 0){
+                            alert("删除成功");
+                        }
                         to_page(currentPage);
                     }
                 })
-
-
             }
         })
     }

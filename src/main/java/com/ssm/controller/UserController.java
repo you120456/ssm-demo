@@ -2,16 +2,14 @@ package com.ssm.controller;
 
 import com.github.pagehelper.PageHelper;
 import com.github.pagehelper.PageInfo;
-import com.ssm.common.ResultData;
+import com.ssm.common.ResponseData;
 import com.ssm.entity.User;
 import com.ssm.service.UserService;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
 import org.springframework.web.bind.annotation.*;
 
-import java.util.HashMap;
 import java.util.List;
-import java.util.Map;
 
 /**
  * Created by jiangfeixiang on 2018/9/4
@@ -31,8 +29,7 @@ public class UserController {
      */
     @RequestMapping(value = "/getAllUser",method = RequestMethod.GET)
     @ResponseBody
-    public ResultData getAllUser(@RequestParam(defaultValue="1",required=true,value="pn") Integer pn){
-        Map<String, Object> map = new HashMap<>();
+    public ResponseData getAllUser(@RequestParam(defaultValue="1",required=true,value="pn") Integer pn){
         /**
          * 每页显示记录数
          *
@@ -51,11 +48,8 @@ public class UserController {
          * 封装了详细的分页信息,传入连续显示的页数
          */
         PageInfo<User> pageInfo=new PageInfo(allUser);
-//        map.put("code",100);
-//        map.put("msg","成功");
-//        map.put("pageInfo",pageInfo);
-        //return map;
-       return ResultData.success(pageInfo);
+
+       return ResponseData.success(pageInfo);
 
     }
 
@@ -66,11 +60,11 @@ public class UserController {
      */
     @RequestMapping(value = "/checkUser/{username}",method = RequestMethod.POST)
     @ResponseBody
-    public ResultData checkUserName(@PathVariable("username") String username){
+    public ResponseData checkUserName(@PathVariable("username") String username){
         //校验用户名
         User user = userService.checkUserName(username);
         System.out.println(user);
-        return ResultData.success(user);
+        return ResponseData.success(user);
     }
 
     /**
@@ -80,9 +74,9 @@ public class UserController {
      */
     @RequestMapping(value = "/saveUser",method = RequestMethod.POST)
     @ResponseBody
-    public ResultData saveUser(@RequestBody User user){
+    public ResponseData saveUser(@RequestBody User user){
        int i = userService.saveUser(user);
-        return ResultData.success();
+        return ResponseData.success();
     }
 
     /**
@@ -91,10 +85,10 @@ public class UserController {
 
     @RequestMapping(value = "/updateUser",method = RequestMethod.POST)
     @ResponseBody
-    public ResultData updateUser(@RequestBody User user){
+    public ResponseData updateUser(@RequestBody User user){
         System.out.print(user);
         userService.updateUser(user);
-        return ResultData.success();
+        return ResponseData.success();
     }
 
     /**
@@ -102,10 +96,10 @@ public class UserController {
      */
     @RequestMapping(value = "/deleteUser/{id}",method = RequestMethod.DELETE)
     @ResponseBody
-    public ResultData deleteUser(@PathVariable("id")Integer id){
+    public ResponseData deleteUser(@PathVariable("id")Integer id){
         //保存用户
         int i = userService.deleteUser(id);
         System.out.println(i);
-        return ResultData.success();
+        return ResponseData.success();
     }
 }

@@ -1,6 +1,5 @@
 package com.ssm.entity;
 
-import com.alibaba.excel.annotation.ExcelProperty;
 import com.alibaba.excel.metadata.BaseRowModel;
 
 import java.io.Serializable;
@@ -11,19 +10,15 @@ import java.io.Serializable;
  *
  */
 public class User extends BaseRowModel implements Serializable {
-    @ExcelProperty(index = 0)
+
     private Integer id;
 
-    @ExcelProperty(index = 1)
     private String username;
 
-    @ExcelProperty(index = 2)
     private String sex;
 
-    @ExcelProperty(index = 3)
     private String city;
 
-    @ExcelProperty(index = 4)
     private Integer age;
 
     public Integer getId() {
